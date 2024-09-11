@@ -15,12 +15,14 @@ app.use(express.json())
 
 app.use('/usuarios', usuarioRoutes)
 app.use('/proyectos', proyectoRoutes)
+app.use('*', (req, res, next) => {
+  return res.status(404).json('Route Not Found')
+})
 
 app.get('/', (req, res) => {
   res.send('Bienvenido a la API')
 })
 
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`)
+app.listen(3000, () => {
+  console.log('Servidor levantado en: http://localhost:3000')
 })
