@@ -56,5 +56,3 @@ const seedData = async () => {
   console.log('Datos insertados')
   mongoose.connection.close()
 }
-
-seedData()
