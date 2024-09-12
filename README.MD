@@ -22,3 +22,5 @@ estan separados los controladores de las rutas para una mejor practica
 se ha creado una semilla para la base de datos donde he metido a nuestro amigo paquito
 tenemos un archivo .env para nuestras claves
 he utilizado chat gpt para hacer este readme basicamente porque no lo habia hecho nunca y ademas no sabia ni como hacerlo, tambien le he consultado algunos fallos que me daba el servidor
+para realizar los cambios que me pedias he copiado y pegado las partes que me servian,
+intente hacer los controladores y las rutas juntos por hacerlo distinto a los videos, pero si es verdad que es mejor practica separarlos
