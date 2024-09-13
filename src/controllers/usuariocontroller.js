@@ -21,17 +21,21 @@ const obtenerUsuarios = async (req, res) => {
 
 const actualizarUsuario = async (req, res) => {
   try {
-    const { proyectos } = req.body
-    const usuario = await Usuario.findById(req.params.id)
+    const { id } = req.params
+    const { proyectos: nuevosProyectos, ...restoDatos } = req.body
+    const usuario = await Usuario.findById(id)
 
-    if (proyectos) {
-      const nuevosProyectos = proyectos.filter(
-        (proyectoId) => !usuario.proyectos.includes(proyectoId)
-      )
-      usuario.proyectos.push(...nuevosProyectos)
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuario no encontrado' })
     }
-
-    Object.assign(usuario, req.body)
+    if (nuevosProyectos && nuevosProyectos.length > 0) {
+      const proyectosActuales = usuario.proyectos || []
+      const proyectosNoDuplicados = nuevosProyectos.filter(
+        (proyecto) => !proyectosActuales.includes(proyecto)
+      )
+      usuario.proyectos.push(...proyectosNoDuplicados)
+    }
+    Object.assign(usuario, restoDatos)
     await usuario.save()
     res.json(usuario)
   } catch (error) {
